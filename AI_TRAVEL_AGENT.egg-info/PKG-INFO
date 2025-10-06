@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: AI-TRAVEL-AGENT
+Version: 0.1
+Author: NASIM
+Requires-Dist: langchain
+Requires-Dist: langchain_core
+Requires-Dist: langchain_groq
+Requires-Dist: langchain_community
+Requires-Dist: python-dotenv
+Requires-Dist: streamlit
+Requires-Dist: setuptools
+Dynamic: author
+Dynamic: requires-dist
