@@ -28,7 +28,7 @@ div.stSlider > label, div.stSlider > label > span {
 page_bg_img = '''
 <style>
 [data-testid="stAppViewContainer"] {
-background-image: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e");
+background-image: url("https://i.pinimg.com/originals/2e/38/06/2e38062cdfc83526ac2cd5257a933d16.gif");
 background-size: cover;
 background-position: center;
 }
