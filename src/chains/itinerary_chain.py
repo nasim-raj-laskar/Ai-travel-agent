@@ -1,6 +1,7 @@
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from src.config.config import GROQ_API_KEY
+from src.utils.weather import get_weather_info, get_weather_recommendations
 
 llm=ChatGroq(
     groq_api_key=GROQ_API_KEY,
@@ -8,16 +9,38 @@ llm=ChatGroq(
     temperature=0.3,
 )
 
-itineary_prompt=ChatPromptTemplate([
-    ("system" , "You are a helpful travel asssistant. Create a day trip itineary for {city} based on user's interest : {interests}. Provide a brief , bulleted itineary"),
-    ("human" , "Create a itineary for my day trip")
+itinerary_prompt=ChatPromptTemplate([
+    ("system", """You are a helpful travel assistant. Create a {days}-day trip itinerary for {city} based on:
+    - User interests: {interests}
+    - Budget level: {budget}
+    - Current weather: {weather}
+    - Weather recommendations: {weather_rec}
+    
+    Format the response as:
+    **Day X: [Theme/Focus]**
+    - Morning: [Activity with time and brief description]
+    - Afternoon: [Activity with time and brief description] 
+    - Evening: [Activity with time and brief description]
+    
+    Include budget-appropriate suggestions and weather-suitable activities. Add practical tips."""),
+    ("human", "Create an itinerary for my trip")
 ])
 
-def generate_itineary(city:str, interests:list[str])-> str:
-    reponse=llm.invoke(
-        itineary_prompt.format_messages(city=city, interests=', '.join(interests))
+def generate_itineary(city: str, interests: list[str], days: int = 1, budget: str = "medium") -> str:
+    weather = get_weather_info(city)
+    weather_rec = get_weather_recommendations(city)
+    
+    response = llm.invoke(
+        itinerary_prompt.format_messages(
+            city=city, 
+            interests=', '.join(interests),
+            days=days,
+            budget=budget,
+            weather=weather,
+            weather_rec=weather_rec
+        )
     )
-    return reponse.content
+    return response.content
 
 
 

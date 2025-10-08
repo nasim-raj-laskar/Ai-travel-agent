@@ -10,36 +10,54 @@ class TravelPlanner:
         self.messages=[]
         self.city=""
         self.interests=[]
+        self.days=1
+        self.budget="medium"
         self.itineary=""
 
-        logger.info("Intilaized TravelPlanner instance")
+        logger.info("Initialized TravelPlanner instance")
 
     def set_city(self,city:str):
         try:
             self.city = city
             self.messages.append(HumanMessage(content=city))
-            logger.info("City set sucesfully")
+            logger.info("City set successfully")
         except Exception as e:
-            logger.error(f"error whiile setting city : {e}")
+            logger.error(f"error while setting city : {e}")
             raise CustomException("Failed to set city" , e)
         
     def set_interests(self,interests_str:str):
         try:
             self.interests = [i.strip() for i in interests_str.split(",")]
             self.messages.append(HumanMessage(content=interests_str))
-            logger.info("Interest also set sucesfully..")
+            logger.info("Interest also set successfully..")
         except Exception as e:
-            logger.error(f"error whiile setting interests : {e}")
+            logger.error(f"error while setting interests : {e}")
             raise CustomException("Failed to set interest" , e)
+    
+    def set_days(self, days: int):
+        try:
+            self.days = days
+            logger.info(f"Days set to {days}")
+        except Exception as e:
+            logger.error(f"error while setting days : {e}")
+            raise CustomException("Failed to set days" , e)
+    
+    def set_budget(self, budget: str):
+        try:
+            self.budget = budget
+            logger.info(f"Budget set to {budget}")
+        except Exception as e:
+            logger.error(f"error while setting budget : {e}")
+            raise CustomException("Failed to set budget" , e)
         
     def create_itineary(self):
         try:
-            logger.info(f"Gnerating itineary for {self.city} and for interests : {self.interests}")
-            itineary = generate_itineary(self.city,self.interests)
+            logger.info(f"Generating itinerary for {self.city} for {self.days} days with {self.budget} budget and interests: {self.interests}")
+            itineary = generate_itineary(self.city, self.interests, self.days, self.budget)
             self.itineary = itineary
             self.messages.append(AIMessage(content=itineary))
-            logger.info("Itineary generated sucesffully..")
+            logger.info("Itinerary generated successfully..")
             return itineary
         except Exception as e:
-            logger.error(f"error whiile creating itineary : {e}")
-            raise CustomException("Failed to create itineary" , e)
+            logger.error(f"error while creating itinerary : {e}")
+            raise CustomException("Failed to create itinerary" , e)
