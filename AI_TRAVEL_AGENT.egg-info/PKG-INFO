@@ -9,5 +9,6 @@ Requires-Dist: langchain_community
 Requires-Dist: python-dotenv
 Requires-Dist: streamlit
 Requires-Dist: setuptools
+Requires-Dist: requests
 Dynamic: author
 Dynamic: requires-dist
