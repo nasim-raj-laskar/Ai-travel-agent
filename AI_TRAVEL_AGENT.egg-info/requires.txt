@@ -6,3 +6,4 @@ python-dotenv
 streamlit
 setuptools
 requests
+awscli

@@ -10,5 +10,6 @@ Requires-Dist: python-dotenv
 Requires-Dist: streamlit
 Requires-Dist: setuptools
 Requires-Dist: requests
+Requires-Dist: awscli
 Dynamic: author
 Dynamic: requires-dist
