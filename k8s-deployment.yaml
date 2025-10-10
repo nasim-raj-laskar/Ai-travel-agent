@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
         - name: streamlit-container
-          image: streamlit-app:latest
-          imagePullPolicy: IfNotPresent
+          image: <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/streamlit-app:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8501
           envFrom:
