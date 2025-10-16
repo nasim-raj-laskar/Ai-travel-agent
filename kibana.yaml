@@ -28,9 +28,9 @@ metadata:
   name: kibana
   namespace: logging
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: kibana
   ports:
     - port: 5601
-      nodePort: 30601
+      targetPort: 5601
