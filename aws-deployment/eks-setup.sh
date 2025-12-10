@@ -8,7 +8,7 @@ export AWS_DEFAULT_REGION
 
 # EKS Cluster Setup Script
 CLUSTER_NAME="ai-travel-agent-cluster"
-REGION="us-east-1"
+REGION="eu-north-1"
 NODE_GROUP_NAME="worker-nodes"
 
 echo "Creating EKS cluster..."

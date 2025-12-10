@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Build and push Docker image to ECR
-REGION="us-east-1"
+REGION="eu-north-1"
 ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
-REPOSITORY_NAME="streamlit-app"
+REPOSITORY_NAME="ai-travel-agent-st-app"
 IMAGE_TAG="latest"
 
 echo "Logging into ECR..."
